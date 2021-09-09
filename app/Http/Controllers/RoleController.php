@@ -21,7 +21,6 @@ function __construct()
     $this->middleware('permission:اضافة صلاحية', ['only' => ['create','store']]);
     $this->middleware('permission:تعديل صلاحية', ['only' => ['edit','update']]);
     $this->middleware('permission:حذف صلاحية', ['only' => ['destroy']]);
-
 }
 
 

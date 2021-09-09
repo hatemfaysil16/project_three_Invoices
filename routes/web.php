@@ -28,7 +28,7 @@ use App\Http\Controllers\Customers_ReportController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
+Auth::routes(['register' => false]);
 
 
 Route::get('/', function () {
@@ -36,9 +36,7 @@ Route::get('/', function () {
 });
 
 
-// Route::get('/viewfile', function(){
-//     return 'sdad';
-// });
+
 
 Route::get('/Invoice_Paid',[InvoicesController::class,'Invoice_Paid'])->name('Invoice_Paid');
 

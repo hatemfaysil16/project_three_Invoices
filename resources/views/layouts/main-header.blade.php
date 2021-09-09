@@ -3,13 +3,13 @@
     <div class="container-fluid">
         <div class="main-header-left ">
             <div class="responsive-logo">
-                <a href="{{ url('/' . ($page = 'index')) }}"><img src="{{ URL::asset('assets/img/brand/logo.png') }}"
+                <a href="{{ url('/' . ($page = 'home')) }}"><img src="{{ URL::asset('assets/img/brand/logo.png') }}"
                         class="logo-1" alt="logo"></a>
-                <a href="{{ url('/' . ($page = 'index')) }}"><img
+                <a href="{{ url('/' . ($page = 'home')) }}"><img
                         src="{{ URL::asset('assets/img/brand/logo-white.png') }}" class="dark-logo-1" alt="logo"></a>
-                <a href="{{ url('/' . ($page = 'index')) }}"><img src="{{ URL::asset('assets/img/brand/favicon.png') }}"
+                <a href="{{ url('/' . ($page = 'home')) }}"><img src="{{ URL::asset('assets/img/brand/favicon.png') }}"
                         class="logo-2" alt="logo"></a>
-                <a href="{{ url('/' . ($page = 'index')) }}"><img src="{{ URL::asset('assets/img/brand/favicon.png') }}"
+                <a href="{{ url('/' . ($page = 'home')) }}"><img src="{{ URL::asset('assets/img/brand/favicon.png') }}"
                         class="dark-logo-2" alt="logo"></a>
 
 
@@ -179,8 +179,9 @@
                         </div>
                     </div>
                 </div>
-                @can('الاشعارات')
-                    <div class="dropdown nav-item main-header-notification">
+                  @can('الاشعارات')
+                  
+                    {{--  <div class="dropdown nav-item main-header-notification">
                         <a class="new nav-link" href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24" fill="none"
                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -222,9 +223,9 @@
 
                             </div>
                         </div>
-                    </div>
+                    </div>  --}}
 
-                @endcan
+                @endcan  
                 <div class="nav-item full-screen fullscreen-button">
                     <a class="new nav-link full-screen-link" href="#"><svg xmlns="http://www.w3.org/2000/svg"
                             class="header-icon-svgs" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -245,7 +246,9 @@
                                 <div class="main-img-user"><img alt="" src="{{URL::asset('assets/img/faces/hatem.jpg')}}"
                                         class=""></div>
                                 <div class="mr-3 my-auto">
+                                    @if(Auth::user())
                                     <h6>{{ Auth::user()->name }}</h6><span>{{ Auth::user()->email }}</span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
