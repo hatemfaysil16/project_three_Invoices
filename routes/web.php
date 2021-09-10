@@ -28,7 +28,7 @@ use App\Http\Controllers\Customers_ReportController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes(['register' => false]);
+Auth::routes(['auth','register' => false]);
 
 
 Route::get('/', function () {
