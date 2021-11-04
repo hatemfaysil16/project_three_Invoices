@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\invoices;
-
+use App\invoices;
 class HomeController extends Controller
 {
     /**
@@ -30,9 +29,9 @@ class HomeController extends Controller
 
 
       $count_all =invoices::count();
-      $count_invoices1 = invoices::where('value_status', 1)->count();
-      $count_invoices2 = invoices::where('value_status', 2)->count();
-      $count_invoices3 = invoices::where('value_status', 3)->count();
+      $count_invoices1 = invoices::where('Value_Status', 1)->count();
+      $count_invoices2 = invoices::where('Value_Status', 2)->count();
+      $count_invoices3 = invoices::where('Value_Status', 3)->count();
 
       if($count_invoices2 == 0){
           $nspainvoices2=0;

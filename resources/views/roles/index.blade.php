@@ -31,6 +31,7 @@
                 type: "success"
             });
         }
+
     </script>
 @endif
 
@@ -42,6 +43,7 @@
                 type: "success"
             });
         }
+
     </script>
 @endif
 
@@ -53,6 +55,7 @@
                 type: "error"
             });
         }
+
     </script>
 @endif
 

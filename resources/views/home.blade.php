@@ -52,9 +52,9 @@
                             <div class="">
                                 <h4 class="tx-20 font-weight-bold mb-1 text-white">
 
-                                    {{ number_format(\App\Models\invoices::sum('Total'), 2) }}
+                                    {{ number_format(\App\invoices::sum('Total'), 2) }}
                                 </h4>
-                                <p class="mb-0 tx-12 text-white op-7">{{ \App\Models\invoices::count() }}</p>
+                                <p class="mb-0 tx-12 text-white op-7">{{ \App\invoices::count() }}</p>
                             </div>
                             <span class="float-right my-auto mr-auto">
                                 <i class="fas fa-arrow-circle-up text-white"></i>
@@ -77,10 +77,10 @@
                             <div class="">
                                 <h3 class="tx-20 font-weight-bold mb-1 text-white">
 
-                                    {{ number_format(\App\Models\invoices::where('Value_Status', 2)->sum('Total'), 2) }}
+                                    {{ number_format(\App\invoices::where('Value_Status', 2)->sum('Total'), 2) }}
 
                                 </h3>
-                                <p class="mb-0 tx-12 text-white op-7">{{ \App\Models\invoices::where('Value_Status', 2)->count() }}
+                                <p class="mb-0 tx-12 text-white op-7">{{ \App\invoices::where('Value_Status', 2)->count() }}
                                 </p>
                             </div>
                             <span class="float-right my-auto mr-auto">
@@ -88,13 +88,14 @@
                                 <span class="text-white op-7">
 
                                     @php
-                                    $count_all= \App\Models\invoices::count();
-                                    $count_invoices2 = \App\Models\invoices::where('Value_Status', 2)->count();
+                                    $count_all= \App\invoices::count();
+                                    $count_invoices2 = \App\invoices::where('Value_Status', 2)->count();
+
                                     if($count_invoices2 == 0){
                                        echo $count_invoices2 = 0;
                                     }
                                     else{
-                                       echo Round($count_invoices2 = $count_invoices2 / $count_all *100);
+                                       echo $count_invoices2 = $count_invoices2 / $count_all *100;
                                     }
                                     @endphp
 
@@ -117,27 +118,25 @@
                             <div class="">
                                 <h4 class="tx-20 font-weight-bold mb-1 text-white">
 
-                                    {{ number_format(\App\Models\invoices::where('Value_Status', 1)->sum('Total'), 2) }}
+                                    {{ number_format(\App\invoices::where('Value_Status', 1)->sum('Total'), 2) }}
 
                                 </h4>
                                 <p class="mb-0 tx-12 text-white op-7">
-                                    {{ \App\Models\invoices::where('Value_Status', 1)->count() }}
+                                    {{ \App\invoices::where('Value_Status', 1)->count() }}
                                 </p>
                             </div>
                             <span class="float-right my-auto mr-auto">
                                 <i class="fas fa-arrow-circle-up text-white"></i>
                                 <span class="text-white op-7">
                                     @php
-                                        $count_all= \App\Models\invoices::count();
-                                        $count_invoices1 = \App\Models\invoices::where('Value_Status', 1)->count();
+                                        $count_all= \App\invoices::count();
+                                        $count_invoices1 = \App\invoices::where('Value_Status', 1)->count();
+
                                         if($count_invoices1 == 0){
                                            echo $count_invoices1 = 0;
                                         }
                                         else{
-                                            $count_invoices1 = $count_invoices1 / $count_all *100;
-
-										   $a = Round($count_invoices1);
-										   echo $a;
+                                           echo $count_invoices1 = $count_invoices1 / $count_all *100;
                                         }
                                     @endphp
                                 </span>
@@ -159,26 +158,25 @@
                             <div class="">
                                 <h4 class="tx-20 font-weight-bold mb-1 text-white">
 
-                                    {{ number_format(\App\Models\invoices::where('Value_Status', 3)->sum('total'), 2) }}
+                                    {{ number_format(\App\invoices::where('Value_Status', 3)->sum('Total'), 2) }}
 
                                 </h4>
                                 <p class="mb-0 tx-12 text-white op-7">
-                                    {{ \App\Models\invoices::where('Value_Status', 3)->count() }}
+                                    {{ \App\invoices::where('Value_Status', 3)->count() }}
                                 </p>
                             </div>
                             <span class="float-right my-auto mr-auto">
                                 <i class="fas fa-arrow-circle-down text-white"></i>
                                 <span class="text-white op-7">
                                     @php
-                                        $count_all= \App\Models\invoices::count();
-                                        $count_invoices1 = \App\Models\invoices::where('Value_Status', 1)->count();
+                                        $count_all= \App\invoices::count();
+                                        $count_invoices1 = \App\invoices::where('Value_Status', 1)->count();
+
                                         if($count_invoices1 == 0){
                                             echo $count_invoices1 = 0;
                                         }
                                         else{
-                                           $count_invoices1 = $count_invoices1 / $count_all *100;
-										   $b = Round($count_invoices1);
-										   echo $b;
+                                          echo $count_invoices1 = $count_invoices1 / $count_all *100;
                                         }
                                     @endphp
                                 </span>
@@ -205,6 +203,7 @@
                 </div>
                 <div class="card-body" style="width: 70%">
                     {!! $chartjs->render() !!}
+
                 </div>
             </div>
         </div>
@@ -215,7 +214,7 @@
                 <label class="main-content-label">نسبة احصائية الفواتير</label>
                 <div class="" style="width: 100%">
                     {!! $chartjs_2->render() !!}
-				</div>
+                </div>
             </div>
         </div>
     </div>

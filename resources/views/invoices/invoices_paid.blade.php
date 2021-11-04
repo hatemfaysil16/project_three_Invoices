@@ -37,6 +37,7 @@
                     type: "success"
                 })
             }
+
         </script>
     @endif
 
@@ -49,6 +50,7 @@
                     type: "success"
                 })
             }
+
         </script>
     @endif
 
@@ -95,22 +97,22 @@
                                         <td>{{ $i }}</td>
                                         <td>{{ $invoice->invoice_number }} </td>
                                         <td>{{ $invoice->invoice_Date }}</td>
-                                        <td>{{ $invoice->due_date }}</td>
+                                        <td>{{ $invoice->Due_date }}</td>
                                         <td>{{ $invoice->product }}</td>
                                         <td><a
-                                            <td><a href="{{url('invoicesDetails',[$invoice->section_id])}}">{{$invoice->section->section_name}}</a> </td>
+                                                href="{{ url('InvoicesDetails') }}/{{ $invoice->id }}">{{ $invoice->section->section_name }}</a>
                                         </td>
                                         <td>{{ $invoice->Discount }}</td>
-                                        <td>{{ $invoice->rate_vat }}</td>
-                                        <td>{{ $invoice->value_vat }}</td>
-                                        <td>{{ $invoice->total }}</td>
+                                        <td>{{ $invoice->Rate_VAT }}</td>
+                                        <td>{{ $invoice->Value_VAT }}</td>
+                                        <td>{{ $invoice->Total }}</td>
                                         <td>
                                             @if ($invoice->Value_Status == 1)
-                                                <span class="text-success">{{ $invoice->status }}</span>
+                                                <span class="text-success">{{ $invoice->Status }}</span>
                                             @elseif($invoice->Value_Status == 2)
-                                                <span class="text-danger">{{ $invoice->status }}</span>
+                                                <span class="text-danger">{{ $invoice->Status }}</span>
                                             @else
-                                                <span class="text-warning">{{ $invoice->status }}</span>
+                                                <span class="text-warning">{{ $invoice->Status }}</span>
                                             @endif
 
                                         </td>
@@ -132,7 +134,7 @@
                                                         الفاتورة</a>
 
                                                     <a class="dropdown-item"
-                                                        href="{{ URL('Status_show', [$invoice->id]) }}"><i
+                                                        href="{{ URL::route('Status_show', [$invoice->id]) }}"><i
                                                             class=" text-success fas
                                                                                                                                     fa-money-bill"></i>&nbsp;&nbsp;تغير
                                                         حالة
@@ -197,7 +199,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                <form action="{{ route('invoices.destroy', 'test') }}" method="post">
+                    <form action="{{ route('invoices.destroy', 'test') }}" method="post">
                         {{ method_field('delete') }}
                         {{ csrf_field() }}
                 </div>
@@ -254,6 +256,7 @@
             var modal = $(this)
             modal.find('.modal-body #invoice_id').val(invoice_id);
         })
+
     </script>
 
     <script>
@@ -263,6 +266,7 @@
             var modal = $(this)
             modal.find('.modal-body #invoice_id').val(invoice_id);
         })
+
     </script>
 
 

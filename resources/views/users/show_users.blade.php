@@ -171,6 +171,7 @@
         modal.find('.modal-body #user_id').val(user_id);
         modal.find('.modal-body #username').val(username);
     })
+
 </script>
 
 

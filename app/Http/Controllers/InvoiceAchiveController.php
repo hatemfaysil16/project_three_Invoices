@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\invoices;
-
+use App\invoices;
 class InvoiceAchiveController extends Controller
 {
     /**

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\products;
+use App\sections;
 use Illuminate\Http\Request;
-use App\Models\sections;
-use App\Models\Products;
 
 class ProductsController extends Controller
 {
@@ -14,10 +14,10 @@ class ProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {       
+    {
         $sections = sections::all();
-        $products = Products::all();
-        return view('products.products',compact('sections','products'));
+        $products = products::all();
+        return view('products.products', compact('sections','products'));
     }
 
     /**
@@ -39,7 +39,7 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         Products::create([
-            'product_name' => $request->Product_name,
+            'Product_name' => $request->Product_name,
             'section_id' => $request->section_id,
             'description' => $request->description,
         ]);
@@ -50,10 +50,10 @@ class ProductsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Products  $products
+     * @param  \App\products  $products
      * @return \Illuminate\Http\Response
      */
-    public function show(Products $products)
+    public function show(products $products)
     {
         //
     }
@@ -61,10 +61,10 @@ class ProductsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Products  $products
+     * @param  \App\products  $products
      * @return \Illuminate\Http\Response
      */
-    public function edit(Products $products)
+    public function edit(products $products)
     {
         //
     }
@@ -73,36 +73,38 @@ class ProductsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Products  $products
+     * @param  \App\products  $products
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
-        $ids = sections::where('section_name',$request->section_name)->first()->id;
 
+       $id = sections::where('section_name', $request->section_name)->first()->id;
 
-        // $products = Products::findOrFail($request->id);
-        $products = Products::find($request->id);
+       $Products = Products::findOrFail($request->pro_id);
+
+       $Products->update([
+       'Product_name' => $request->Product_name,
+       'description' => $request->description,
+       'section_id' => $id,
+       ]);
+
+       session()->flash('Edit', 'تم تعديل المنتج بنجاح');
+       return back();
         
-        $products->update([
-            'product_name' => $request->product_name,
-            'description' => $request->description,
-            'section_id' =>$ids
-        ]);
-
-        
-        session()->flash('edit','تم تعديل القسم بنجاج');
-        return redirect('/products');
     }
 
-
-
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\products  $products
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(Request $request)
     {
-        $products = Products::findOrFail($request->id);
-        $products->delete();
-        session()->flash('delete','تم حذف القسم بنجاح');
-        return redirect('/products');
-
+         $Products = Products::findOrFail($request->pro_id);
+         $Products->delete();
+         session()->flash('delete', 'تم حذف المنتج بنجاح');
+         return back();
     }
 }

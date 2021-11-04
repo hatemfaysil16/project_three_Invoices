@@ -223,6 +223,7 @@
     var date = $('.fc-datepicker').datepicker({
         dateFormat: 'yy-mm-dd'
     }).val();
+
 </script>
 
 <script>
@@ -242,11 +243,14 @@
                         });
                     },
                 });
+
             } else {
                 console.log('AJAX load did not work');
             }
         });
+
     });
+
 </script>
 
 

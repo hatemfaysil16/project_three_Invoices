@@ -6,11 +6,11 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use App\Models\invoices;
+use App\invoices;
 class AddInvoice extends Notification
 {
     use Queueable;
-    public $invoice_id;
+    private $invoice_id;
 
     /**
      * Create a new notification instance.

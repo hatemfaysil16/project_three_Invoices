@@ -18,23 +18,12 @@
     <!-- breadcrumb -->
 @endsection
 @section('content')
-
-@if (session()->has('delete_invoice'))
-<script>
-	window.onload = function() {
-		notif({
-			msg: "تم حذف الفاتورة بنجاح",
-			type: "success"
-		})
-	}
-</script>
-@endif
     <!-- row -->
     <div class="row">
         <div class="col-lg-12 col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ url('Status_Update', ['id' => $invoices->id]) }}" method="post" autocomplete="off">
+                    <form action="{{ route('Status_Update', ['id' => $invoices->id]) }}" method="post" autocomplete="off">
                         {{ csrf_field() }}
                         {{-- 1 --}}
                         <div class="row">
@@ -98,7 +87,7 @@
                                 <label for="inputName" class="control-label">مبلغ العمولة</label>
                                 <input type="text" class="form-control form-control-lg" id="Amount_Commission"
                                     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                                    value="{{ $invoices->Amount_commission }}" required readonly>
+                                    value="{{ $invoices->Amount_Commission }}" required readonly>
                             </div>
 
                             <div class="col">
@@ -112,8 +101,8 @@
                                 <label for="inputName" class="control-label">نسبة ضريبة القيمة المضافة</label>
                                 <select name="Rate_VAT" id="Rate_VAT" class="form-control" onchange="myFunction()" readonly>
                                     <!--placeholder-->
-                                    <option value=" {{ $invoices->rate_vat }}">
-                                        {{ $invoices->rate_vat }}
+                                    <option value=" {{ $invoices->Rate_VAT }}">
+                                        {{ $invoices->Rate_VAT }}
                                 </select>
                             </div>
 
@@ -125,13 +114,13 @@
                             <div class="col">
                                 <label for="inputName" class="control-label">قيمة ضريبة القيمة المضافة</label>
                                 <input type="text" class="form-control" id="Value_VAT" name="Value_VAT"
-                                    value="{{ $invoices->value_vat }}" readonly>
+                                    value="{{ $invoices->Value_VAT }}" readonly>
                             </div>
 
                             <div class="col">
                                 <label for="inputName" class="control-label">الاجمالي شامل الضريبة</label>
                                 <input type="text" class="form-control" id="Total" name="Total" readonly
-                                    value="{{ $invoices->total }}">
+                                    value="{{ $invoices->Total }}">
                             </div>
                         </div>
 
@@ -157,7 +146,7 @@
                             <div class="col">
                                 <label>تاريخ الدفع</label>
                                 <input class="form-control fc-datepicker" name="Payment_Date" placeholder="YYYY-MM-DD"
-                                    type="text" >
+                                    type="text" required>
                             </div>
 
 
@@ -199,5 +188,6 @@
         var date = $('.fc-datepicker').datepicker({
             dateFormat: 'yy-mm-dd'
         }).val();
+
     </script>
 @endsection

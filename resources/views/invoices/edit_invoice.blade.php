@@ -45,7 +45,6 @@
             <div class="card">
                 <div class="card-body">
 
-                    
                     <form action="{{ url('invoices/update') }}" method="post" autocomplete="off">
                         {{ method_field('patch') }}
                         {{ csrf_field() }}
@@ -54,7 +53,7 @@
                             <div class="col">
                                 <label for="inputName" class="control-label">رقم الفاتورة</label>
                                 <input type="hidden" name="invoice_id" value="{{ $invoices->id }}">
-                                <input type="hidden" class="form-control" id="inputName" name="invoice_number"
+                                <input type="text" class="form-control" id="inputName" name="invoice_number"
                                     title="يرجي ادخال رقم الفاتورة" value="{{ $invoices->invoice_number }}" required>
                             </div>
 
@@ -66,8 +65,8 @@
 
                             <div class="col">
                                 <label>تاريخ الاستحقاق</label>
-                                <input class="form-control fc-datepicker" name="due_date" placeholder="YYYY-MM-DD"
-                                    type="text" value="{{ $invoices->due_date }}" required>
+                                <input class="form-control fc-datepicker" name="Due_date" placeholder="YYYY-MM-DD"
+                                    type="text" value="{{ $invoices->Due_date }}" required>
                             </div>
 
                         </div>
@@ -113,7 +112,7 @@
                                 <input type="text" class="form-control form-control-lg" id="Amount_Commission"
                                     name="Amount_Commission" title="يرجي ادخال مبلغ العمولة "
                                     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                                    value="{{ $invoices->Amount_commission }}" required>
+                                    value="{{ $invoices->Amount_Commission }}" required>
                             </div>
 
                             <div class="col">
@@ -128,8 +127,8 @@
                                 <label for="inputName" class="control-label">نسبة ضريبة القيمة المضافة</label>
                                 <select name="Rate_VAT" id="Rate_VAT" class="form-control" onchange="myFunction()">
                                     <!--placeholder-->
-                                    <option value=" {{ $invoices->rate_vat }}">
-                                        {{ $invoices->rate_vat }}
+                                    <option value=" {{ $invoices->Rate_VAT }}">
+                                        {{ $invoices->Rate_VAT }}
                                     <option value=" 5%">5%</option>
                                     <option value="10%">10%</option>
                                 </select>
@@ -143,13 +142,13 @@
                             <div class="col">
                                 <label for="inputName" class="control-label">قيمة ضريبة القيمة المضافة</label>
                                 <input type="text" class="form-control" id="Value_VAT" name="Value_VAT"
-                                    value="{{ $invoices->value_vat }}" readonly>
+                                    value="{{ $invoices->Value_VAT }}" readonly>
                             </div>
 
                             <div class="col">
                                 <label for="inputName" class="control-label">الاجمالي شامل الضريبة</label>
                                 <input type="text" class="form-control" id="Total" name="Total" readonly
-                                    value="{{ $invoices->total }}">
+                                    value="{{ $invoices->Total }}">
                             </div>
                         </div>
 
@@ -211,6 +210,7 @@
         var date = $('.fc-datepicker').datepicker({
             dateFormat: 'yy-mm-dd'
         }).val();
+
     </script>
 
     <script>
@@ -230,32 +230,49 @@
                             });
                         },
                     });
+
                 } else {
                     console.log('AJAX load did not work');
                 }
             });
+
         });
+
     </script>
 
 
     <script>
         function myFunction() {
+
             var Amount_Commission = parseFloat(document.getElementById("Amount_Commission").value);
             var Discount = parseFloat(document.getElementById("Discount").value);
             var Rate_VAT = parseFloat(document.getElementById("Rate_VAT").value);
             var Value_VAT = parseFloat(document.getElementById("Value_VAT").value);
+
             var Amount_Commission2 = Amount_Commission - Discount;
+
+
             if (typeof Amount_Commission === 'undefined' || !Amount_Commission) {
+
                 alert('يرجي ادخال مبلغ العمولة ');
+
             } else {
                 var intResults = Amount_Commission2 * Rate_VAT / 100;
+
                 var intResults2 = parseFloat(intResults + Amount_Commission2);
+
                 sumq = parseFloat(intResults).toFixed(2);
+
                 sumt = parseFloat(intResults2).toFixed(2);
+
                 document.getElementById("Value_VAT").value = sumq;
+
                 document.getElementById("Total").value = sumt;
+
             }
+
         }
+
     </script>
 
 
